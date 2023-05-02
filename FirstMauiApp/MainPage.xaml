@@ -1,0 +1,81 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewmodel="clr-namespace:FirstMauiApp"
+             x:DataType="viewmodel:MainViewModel"
+             x:Class="FirstMauiApp.MainPage">
+    
+    <ContentPage.BindingContext>
+        <viewmodel:MainViewModel/>
+    </ContentPage.BindingContext>
+
+    <ScrollView>
+        <HorizontalStackLayout
+                Spacing="25"
+                Padding="30,0"
+                VerticalOptions="Center">
+                <VerticalStackLayout
+                    Spacing="40"    
+                    Padding="30,0"
+                    VerticalOptions="Start">
+                    
+                    <Label
+                        Text="Имя"
+                    />
+                    
+                    <Label
+                        Text="Фамилия"
+                    />
+
+                    <Label
+                        Text="Дата рождения"
+                    />
+                    
+                </VerticalStackLayout>
+
+                <VerticalStackLayout
+                    Spacing="25"
+                    Padding="30,0"
+                    VerticalOptions="Center">
+
+                    <Entry
+                        Placeholder="First Name"
+                        Text="{Binding FirstName}"
+                    />
+
+                    <Entry
+                        Placeholder="Second Name"
+                        Text="{Binding SecondName}"
+                    />
+
+                    <Entry
+                        Placeholder="Date of birth (dd/MM/yyyy)"
+                        Text="{Binding BirthDate}"
+                    />
+
+                    <HorizontalStackLayout
+                        Spacing="30"
+                        HorizontalOptions="Center">
+
+                        <Button
+                            IsEnabled="{Binding IsNotBusy}"
+                            Command="{Binding TapOkCommand}"
+                            Text="Ok"
+                            HorizontalOptions="End"
+                        />
+
+                        <Button
+                            IsEnabled="{Binding IsNotBusy}"
+                            Command="{Binding TapRefreshCommand}"
+                            Text="Refresh"
+                            HorizontalOptions="End"
+                        />
+                    </HorizontalStackLayout>
+
+                </VerticalStackLayout>
+                
+            </HorizontalStackLayout>
+
+    </ScrollView>
+
+</ContentPage>
