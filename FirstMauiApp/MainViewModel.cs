@@ -11,7 +11,7 @@ namespace FirstMauiApp
 {
     internal partial class MainViewModel : ObservableObject
     {
-        private List<Human> humanList = new List<Human>();
+        public ObservableCollection<Human> HumanList { get; } = new();
 
         [ObservableProperty]
         string firstName;
