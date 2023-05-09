@@ -19,17 +19,27 @@
                     Padding="30,0"
                     VerticalOptions="Start">
                     
-                    <Label
-                        Text="Имя"
-                    />
+                <Entry Placeholder="First Name" Text="{Binding FirstName}" />
                     
-                    <Label
-                        Text="Фамилия"
-                    />
+                <Entry Placeholder="Second Name" Text="{Binding SecondName}" />
 
-                    <Label
-                        Text="Дата рождения"
-                    />
+                <Entry Placeholder="Date of birth (dd/MM/yyyy)" Text="{Binding BirthDate}" />
+
+                <HorizontalStackLayout HorizontalOptions="Center" Spacing="30">
+
+                    <Button
+                        Command="{Binding TapOkCommand}"
+                        HorizontalOptions="Start"
+                        IsEnabled="{Binding IsNotBusy}"
+                        Text="Ok" />
+
+                    <Button
+                        Command="{Binding TapRefreshCommand}"
+                        HorizontalOptions="End"
+                        IsEnabled="{Binding IsNotBusy}"
+                        Text="Refresh" />
+
+
                     
                 </VerticalStackLayout>
 
