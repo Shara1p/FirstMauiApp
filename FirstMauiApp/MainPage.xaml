@@ -41,12 +41,39 @@
 
 
                     
+                <CollectionView
+                    x:Name="PickAPerson"
+                    Grid.ColumnSpan="2"
+                    HorizontalOptions="Center"
+                    ItemsSource="{Binding HumanList}"
+                    SelectionMode="Single">
+
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate x:DataType="model:Human">
+                            <Frame>
+                                <VerticalStackLayout>
+                                    <Label Text="{Binding FirstName}" />
+                                    <Label Text="{Binding SecondName}" />
+                                    <Label Text="{Binding BirthDate}" />
                 </VerticalStackLayout>
 
-                <VerticalStackLayout
-                    Spacing="25"
-                    Padding="30,0"
-                    VerticalOptions="Center">
+                                <VisualStateManager.VisualStateGroups>
+                                    <VisualStateGroup Name="CommonStates">
+                                        <VisualState Name="Normal" />
+                                        <VisualState Name="Selected">
+                                            <VisualState.Setters>
+                                                <Setter Property="BackgroundColor" Value="Red" />
+                                            </VisualState.Setters>
+                                        </VisualState>
+
+                                    </VisualStateGroup>
+                                </VisualStateManager.VisualStateGroups>
+                            </Frame>
+
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+
+                </CollectionView>
 
                     <Entry
                         Placeholder="First Name"
