@@ -1,26 +1,31 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:viewmodel="clr-namespace:FirstMauiApp"
-             x:DataType="viewmodel:MainViewModel"
-             x:Class="FirstMauiApp.MainPage">
-    
-    <ContentPage.BindingContext>
-        <viewmodel:MainViewModel/>
-    </ContentPage.BindingContext>
+<ContentPage
+    x:Class="FirstMauiApp.MainPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:model="clr-namespace:FirstMauiApp.Model"
+    xmlns:viewmodel="clr-namespace:FirstMauiApp"
+    x:DataType="viewmodel:MainViewModel">
 
+    <ContentPage.BindingContext>
+        <viewmodel:MainViewModel />
+    </ContentPage.BindingContext>
     <ScrollView>
         <HorizontalStackLayout
-                Spacing="25"
-                Padding="30,0"
+            Padding="30,0"
+            Spacing="25"
+            VerticalOptions="Center">
+
+
+
+            <VerticalStackLayout
+                Padding="20,0"
+                HorizontalOptions="Center"
+                Spacing="40"
                 VerticalOptions="Center">
-                <VerticalStackLayout
-                    Spacing="40"    
-                    Padding="30,0"
-                    VerticalOptions="Start">
-                    
+
                 <Entry Placeholder="First Name" Text="{Binding FirstName}" />
-                    
+
                 <Entry Placeholder="Second Name" Text="{Binding SecondName}" />
 
                 <Entry Placeholder="Date of birth (dd/MM/yyyy)" Text="{Binding BirthDate}" />
@@ -40,7 +45,10 @@
                         Text="Refresh" />
 
 
-                    
+
+                </HorizontalStackLayout>
+
+
                 <CollectionView
                     x:Name="PickAPerson"
                     Grid.ColumnSpan="2"
@@ -55,7 +63,7 @@
                                     <Label Text="{Binding FirstName}" />
                                     <Label Text="{Binding SecondName}" />
                                     <Label Text="{Binding BirthDate}" />
-                </VerticalStackLayout>
+                                </VerticalStackLayout>
 
                                 <VisualStateManager.VisualStateGroups>
                                     <VisualStateGroup Name="CommonStates">
@@ -75,50 +83,37 @@
 
                 </CollectionView>
 
-                    <Entry
-                        Placeholder="First Name"
-                        Text="{Binding FirstName}"
-                    />
 
-                    <Entry
-                        Placeholder="Second Name"
-                        Text="{Binding SecondName}"
-                    />
 
-                    <Entry
-                        Placeholder="Date of birth (dd/MM/yyyy)"
-                        Text="{Binding BirthDate}"
-                    />
 
-                    <HorizontalStackLayout
-                        Spacing="30"
-                        HorizontalOptions="Center">
+                <HorizontalStackLayout HorizontalOptions="Center">
 
-                        <Button
+                    <Button
                         Command="{Binding TapDeleteCommand}"
                         CommandParameter="{Binding Source={x:Reference PickAPerson}, Path=SelectedItem}"
                         HorizontalOptions="Start"
-                            IsEnabled="{Binding IsNotBusy}"
+                        IsEnabled="{Binding IsNotBusy}"
                         Text="Delete" />
                     <Button
                         Command="{Binding TapEditCommand}"
                         CommandParameter="{Binding Source={x:Reference PickAPerson}, Path=SelectedItem}"
-                            HorizontalOptions="End"
+                        HorizontalOptions="End"
                         IsEnabled="{Binding IsNotBusy}"
                         Text="Edit" />
 
-                        <Button
-                            IsEnabled="{Binding IsNotBusy}"
-                            Command="{Binding TapRefreshCommand}"
-                            Text="Refresh"
-                            HorizontalOptions="End"
-                        />
-                    </HorizontalStackLayout>
+                </HorizontalStackLayout>
 
-                </VerticalStackLayout>
-                
-            </HorizontalStackLayout>
 
+            </VerticalStackLayout>
+
+
+
+
+
+
+        </HorizontalStackLayout>
     </ScrollView>
+
+
 
 </ContentPage>

@@ -1,11 +1,7 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using FirstMauiApp.Model;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Collections.ObjectModel;
 
 namespace FirstMauiApp
 {
@@ -20,6 +16,7 @@ namespace FirstMauiApp
         [ObservableProperty]
         String birthDate;
 
+
         [ObservableProperty]
         [NotifyPropertyChangedFor(nameof(IsNotBusy))]
         bool isBusy;
@@ -31,9 +28,9 @@ namespace FirstMauiApp
         {
             IsBusy = true;
 
-            humanList.Add(new Human(FirstName, SecondName, DateTime.Parse(BirthDate)));
+            HumanList.Add(new Human(FirstName, SecondName, DateTime.Parse(BirthDate)));
 
-            Console.WriteLine(humanList[0]);
+            Console.WriteLine(HumanList[0]);
 
             IsBusy = false;
 

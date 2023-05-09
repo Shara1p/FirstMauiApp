@@ -1,4 +1,4 @@
-namespace FirstMauiApp.Model
+﻿namespace FirstMauiApp.Model
 {
     public class Human
     {
@@ -10,7 +10,8 @@ namespace FirstMauiApp.Model
         public string SecondName { get { return secondName; } set { secondName = value; } }
         public DateTime BirthDate { get { return birthDate; } set { birthDate = value; } }
 
-        public Human(String _firstName, String _secondName, DateTime _birthDate) {
+        public Human(String _firstName, String _secondName, DateTime _birthDate)
+        {
             firstName = _firstName;
             secondName = _secondName;
             birthDate = _birthDate;
