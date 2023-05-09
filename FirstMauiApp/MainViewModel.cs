@@ -53,5 +53,34 @@ namespace FirstMauiApp
             IsBusy = false;
         }
 
+        [RelayCommand]
+        void TapDelete(Human human)
+        {
+            IsBusy = true;
+
+            if (HumanList.Count > 0)
+            {
+                HumanList.Remove(human);
+            }
+
+            IsBusy = false;
+        }
+
+        [RelayCommand]
+        void TapEdit(Human human)
+        {
+            IsBusy = true;
+
+            for(int i = 0; i < HumanList.Count; i++)
+            {
+                if (HumanList[i].Equals(human))
+                {
+                    HumanList[i] = new Human(FirstName, SecondName, DateTime.Parse(BirthDate));
+                }
+            }
+
+            IsBusy = false;
+        }
+
     }
 }
