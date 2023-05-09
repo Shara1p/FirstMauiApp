@@ -95,11 +95,17 @@
                         HorizontalOptions="Center">
 
                         <Button
+                        Command="{Binding TapDeleteCommand}"
+                        CommandParameter="{Binding Source={x:Reference PickAPerson}, Path=SelectedItem}"
+                        HorizontalOptions="Start"
                             IsEnabled="{Binding IsNotBusy}"
-                            Command="{Binding TapOkCommand}"
-                            Text="Ok"
+                        Text="Delete" />
+                    <Button
+                        Command="{Binding TapEditCommand}"
+                        CommandParameter="{Binding Source={x:Reference PickAPerson}, Path=SelectedItem}"
                             HorizontalOptions="End"
-                        />
+                        IsEnabled="{Binding IsNotBusy}"
+                        Text="Edit" />
 
                         <Button
                             IsEnabled="{Binding IsNotBusy}"
