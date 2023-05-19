@@ -14,7 +14,7 @@ namespace FirstMauiApp
         [ObservableProperty]
         string secondName;
         [ObservableProperty]
-        String birthDate;
+        string birthDate;
 
 
         [ObservableProperty]
