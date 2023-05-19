@@ -10,110 +10,89 @@
     <ContentPage.BindingContext>
         <viewmodel:MainViewModel />
     </ContentPage.BindingContext>
-    <ScrollView>
-        <HorizontalStackLayout
-            Padding="30,0"
-            Spacing="25"
-            VerticalOptions="Center">
 
+    <Grid RowDefinitions="50, 100, 50" RowSpacing="100">
 
+        <VerticalStackLayout
+            Grid.Row="0"
+            Margin="20"
+            HorizontalOptions="Center">
+            <Entry Placeholder="First Name" Text="{Binding FirstName}" />
 
-            <VerticalStackLayout
-                Padding="20,0"
+            <Entry Placeholder="Second Name" Text="{Binding SecondName}" />
+
+            <Entry Placeholder="Date of birth (dd/MM/yyyy)" Text="{Binding BirthDate}" />
+
+        </VerticalStackLayout>
+
+        <VerticalStackLayout Grid.Row="1">
+            <CollectionView
+                x:Name="PickAPerson"
                 HorizontalOptions="Center"
-                Spacing="40"
-                VerticalOptions="Center">
+                ItemsSource="{Binding HumanList}"
+                MaximumHeightRequest="150"
+                SelectionMode="Single">
 
-                <Entry Placeholder="First Name" Text="{Binding FirstName}" />
+                <CollectionView.ItemTemplate>
+                    <DataTemplate x:DataType="model:Human">
+                        <Frame>
+                            <VerticalStackLayout>
+                                <Label Text="{Binding FirstName}" />
+                                <Label Text="{Binding SecondName}" />
+                                <Label Text="{Binding BirthDate}" />
+                            </VerticalStackLayout>
 
-                <Entry Placeholder="Second Name" Text="{Binding SecondName}" />
+                            <VisualStateManager.VisualStateGroups>
+                                <VisualStateGroup Name="CommonStates">
+                                    <VisualState Name="Normal" />
+                                    <VisualState Name="Selected">
+                                        <VisualState.Setters>
+                                            <Setter Property="BackgroundColor" Value="Red" />
+                                        </VisualState.Setters>
+                                    </VisualState>
 
-                <Entry Placeholder="Date of birth (dd/MM/yyyy)" Text="{Binding BirthDate}" />
+                                </VisualStateGroup>
+                            </VisualStateManager.VisualStateGroups>
+                        </Frame>
 
-                <HorizontalStackLayout HorizontalOptions="Center" Spacing="30">
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
 
-                    <Button
-                        Command="{Binding TapOkCommand}"
-                        HorizontalOptions="Start"
-                        IsEnabled="{Binding IsNotBusy}"
-                        Text="Ok" />
+            </CollectionView>
+        </VerticalStackLayout>
 
-                    <Button
-                        Command="{Binding TapRefreshCommand}"
-                        HorizontalOptions="End"
-                        IsEnabled="{Binding IsNotBusy}"
-                        Text="Refresh" />
+        <HorizontalStackLayout
+            Grid.Row="2"
+            HorizontalOptions="Center"
+            Spacing="10">
+            <Button
+                Command="{Binding TapOkCommand}"
+                HorizontalOptions="Start"
+                IsEnabled="{Binding IsNotBusy}"
+                Text="Ok" />
 
+            <Button
+                Command="{Binding TapRefreshCommand}"
+                HorizontalOptions="End"
+                IsEnabled="{Binding IsNotBusy}"
+                Text="Refresh" />
 
-
-                </HorizontalStackLayout>
-
-
-                <CollectionView
-                    x:Name="PickAPerson"
-                    Grid.ColumnSpan="2"
-                    HorizontalOptions="Center"
-                    ItemsSource="{Binding HumanList}"
-                    SelectionMode="Single">
-
-                    <CollectionView.ItemTemplate>
-                        <DataTemplate x:DataType="model:Human">
-                            <Frame>
-                                <VerticalStackLayout>
-                                    <Label Text="{Binding FirstName}" />
-                                    <Label Text="{Binding SecondName}" />
-                                    <Label Text="{Binding BirthDate}" />
-                                </VerticalStackLayout>
-
-                                <VisualStateManager.VisualStateGroups>
-                                    <VisualStateGroup Name="CommonStates">
-                                        <VisualState Name="Normal" />
-                                        <VisualState Name="Selected">
-                                            <VisualState.Setters>
-                                                <Setter Property="BackgroundColor" Value="Red" />
-                                            </VisualState.Setters>
-                                        </VisualState>
-
-                                    </VisualStateGroup>
-                                </VisualStateManager.VisualStateGroups>
-                            </Frame>
-
-                        </DataTemplate>
-                    </CollectionView.ItemTemplate>
-
-                </CollectionView>
-
-
-
-
-                <HorizontalStackLayout HorizontalOptions="Center">
-
-                    <Button
-                        Command="{Binding TapDeleteCommand}"
-                        CommandParameter="{Binding Source={x:Reference PickAPerson}, Path=SelectedItem}"
-                        HorizontalOptions="Start"
-                        IsEnabled="{Binding IsNotBusy}"
-                        Text="Delete" />
-                    <Button
-                        Command="{Binding TapEditCommand}"
-                        CommandParameter="{Binding Source={x:Reference PickAPerson}, Path=SelectedItem}"
-                        HorizontalOptions="End"
-                        IsEnabled="{Binding IsNotBusy}"
-                        Text="Edit" />
-
-                </HorizontalStackLayout>
-
-
-            </VerticalStackLayout>
-
-
-
-
+            <Button
+                Command="{Binding TapDeleteCommand}"
+                CommandParameter="{Binding Source={x:Reference PickAPerson}, Path=SelectedItem}"
+                HorizontalOptions="Start"
+                IsEnabled="{Binding IsNotBusy}"
+                Text="Delete" />
+            <Button
+                Command="{Binding TapEditCommand}"
+                CommandParameter="{Binding Source={x:Reference PickAPerson}, Path=SelectedItem}"
+                HorizontalOptions="End"
+                IsEnabled="{Binding IsNotBusy}"
+                Text="Edit" />
 
 
         </HorizontalStackLayout>
-    </ScrollView>
 
-
+    </Grid>
 
 </ContentPage>
